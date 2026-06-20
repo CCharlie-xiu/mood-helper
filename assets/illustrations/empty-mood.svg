@@ -1,0 +1,10 @@
+<svg viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <circle cx="60" cy="60" r="50" fill="var(--bg-tertiary)" opacity="0.5"/>
+  <rect x="30" y="25" width="45" height="55" rx="4" fill="var(--card-bg)" stroke="var(--border-color)" stroke-width="2"/>
+  <line x1="38" y1="38" x2="67" y2="38" stroke="var(--border-color)" stroke-width="2" stroke-linecap="round"/>
+  <line x1="38" y1="48" x2="67" y2="48" stroke="var(--border-color)" stroke-width="2" stroke-linecap="round"/>
+  <line x1="38" y1="58" x2="55" y2="58" stroke="var(--border-color)" stroke-width="2" stroke-linecap="round"/>
+  <circle cx="38" cy="68" r="3" fill="var(--accent)"/>
+  <rect x="65" y="40" width="25" height="8" rx="2" fill="var(--accent)" opacity="0.8" transform="rotate(-45 65 40)"/>
+  <polygon points="55,80 50,90 60,85" fill="var(--accent)"/>
+</svg>

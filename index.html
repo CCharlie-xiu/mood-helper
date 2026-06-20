@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#4A9EDE">
+  <title>心情记录助手</title>
+
+  <!-- CSS 样式：按顺序加载 variables → reset → base → animations → components → pages -->
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/home.css">
+  <link rel="stylesheet" href="css/record.css">
+  <link rel="stylesheet" href="css/calendar.css">
+  <link rel="stylesheet" href="css/stats.css">
+  <link rel="stylesheet" href="css/profile.css">
+</head>
+<body>
+  <div id="app" class="app-layout">
+    <!-- 左侧侧边栏 -->
+    <aside id="sidebar" class="sidebar">
+      <div class="sidebar-header">
+        <div class="sidebar-logo">😊</div>
+        <div class="sidebar-title">心情助手</div>
+      </div>
+      <nav class="sidebar-nav">
+        <a class="sidebar-nav__item sidebar-nav__item--active" data-path="/home">
+          <span class="sidebar-nav__icon">🏠</span>
+          <span class="sidebar-nav__label">首页</span>
+        </a>
+        <a class="sidebar-nav__item" data-path="/record">
+          <span class="sidebar-nav__icon">✏️</span>
+          <span class="sidebar-nav__label">记录心情</span>
+        </a>
+        <a class="sidebar-nav__item" data-path="/calendar">
+          <span class="sidebar-nav__icon">📅</span>
+          <span class="sidebar-nav__label">日历回顾</span>
+        </a>
+        <a class="sidebar-nav__item" data-path="/stats">
+          <span class="sidebar-nav__icon">📊</span>
+          <span class="sidebar-nav__label">数据统计</span>
+        </a>
+        <a class="sidebar-nav__item" data-path="/profile">
+          <span class="sidebar-nav__icon">👤</span>
+          <span class="sidebar-nav__label">个人中心</span>
+        </a>
+      </nav>
+      <div class="sidebar-footer">
+        <button class="sidebar-theme-toggle" id="sidebar-theme-toggle" title="切换主题">
+          <span class="sidebar-theme-toggle__icon">🌙</span>
+          <span class="sidebar-theme-toggle__label">深色模式</span>
+        </button>
+      </div>
+    </aside>
+
+    <!-- 右侧内容区域 -->
+    <main class="main-content">
+      <div id="page-container" class="page-view"></div>
+    </main>
+  </div>
+
+  <!-- 提示消息容器 -->
+  <div id="toast-container" class="toast-container"></div>
+
+  <!-- 不兼容提示（默认隐藏） -->
+  <div id="unsupported-browser" class="unsupported-browser" style="display:none;">
+    <div class="unsupported-content">
+      <div class="unsupported-icon">😞</div>
+      <h2>浏览器不兼容</h2>
+      <p>请升级至最新版本的 Chrome、Safari 或 Firefox。</p>
+    </div>
+  </div>
+
+  <!-- Chart.js CDN (4.x版本) -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
+
+  <!-- JS 模块：按依赖顺序加载 -->
+  <!-- 1. 常量与数据 -->
+  <script src="js/data/constants.js"></script>
+  <script src="js/data/quotes.js"></script>
+
+  <!-- 2. 基础设施 -->
+  <script src="js/app.js"></script>
+  <script src="js/router.js"></script>
+  <script src="js/theme-manager.js"></script>
+  <script src="js/storage-adapter.js"></script>
+  <script src="js/data-validator.js"></script>
+  <script src="js/image-processor.js"></script>
+  <script src="js/data-exporter.js"></script>
+  <script src="js/animation-controller.js"></script>
+
+  <!-- 3. 服务层 -->
+  <script src="js/services/mood-service.js"></script>
+  <script src="js/services/settings-service.js"></script>
+  <script src="js/services/checkin-service.js"></script>
+  <script src="js/services/calendar-service.js"></script>
+  <script src="js/services/stats-service.js"></script>
+  <script src="js/services/insight-service.js"></script>
+
+  <!-- 4. 组件层 -->
+  <script src="js/components/tab-bar.js"></script>
+  <script src="js/components/mood-picker.js"></script>
+  <script src="js/components/intensity-slider.js"></script>
+  <script src="js/components/tag-selector.js"></script>
+  <script src="js/components/image-uploader.js"></script>
+  <script src="js/components/date-detail.js"></script>
+  <script src="js/components/toast.js"></script>
+  <script src="js/components/modal.js"></script>
+  <script src="js/components/empty-state.js"></script>
+
+  <!-- 5. 视图层 -->
+  <script src="js/views/home-view.js"></script>
+  <script src="js/views/record-view.js"></script>
+  <script src="js/views/calendar-view.js"></script>
+  <script src="js/views/stats-view.js"></script>
+  <script src="js/views/profile-view.js"></script>
+
+  <!-- 6. 应用启动 -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // 初始化应用
+      const app = new App();
+      app.init();
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,264 @@
+/* ============================================
+ * 数据统计页样式 — 大学生心情记录助手
+ * 维度切换、图表区域、洞察分析、空状态
+ * PC端布局：图表横向并排、更大图表高度、更宽松布局
+ * ============================================ */
+
+/* ------------------------------------------
+ * 统计维度切换 — 3个按钮组、选中高亮
+ * ------------------------------------------ */
+.stats-period {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  background-color: var(--bg-tertiary);
+  border-radius: var(--radius-full);
+  padding: var(--spacing-xs);
+  max-width: 320px;
+}
+
+.stats-period__btn {
+  flex: 1;
+  padding: var(--spacing-sm) 0;
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  color: var(--text-secondary);
+  background-color: transparent;
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  transition: background-color var(--transition-fast),
+              color var(--transition-fast),
+              box-shadow var(--transition-fast),
+              transform var(--transition-fast);
+  text-align: center;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+.stats-period__btn:hover {
+  color: var(--text-primary);
+}
+
+.stats-period__btn:active {
+  transform: scale(0.96);
+}
+
+/* 选中高亮 */
+.stats-period__btn--active {
+  background-color: var(--accent);
+  color: #FFFFFF;
+  box-shadow: 0 2px 8px rgba(74, 158, 222, 0.3);
+  font-weight: var(--font-weight-semibold);
+}
+
+.stats-period__btn--active:active {
+  background-color: var(--accent-dark);
+}
+
+/* ------------------------------------------
+ * 图表区域 — PC端横向并排显示
+ * ------------------------------------------ */
+.stats-charts-row {
+  display: flex;
+  gap: var(--spacing-lg);
+  margin-bottom: var(--spacing-md);
+}
+
+.stats-charts-row .stats-chart {
+  flex: 1;
+  min-width: 0;
+}
+
+.stats-chart {
+  padding: var(--spacing-md) 0;
+}
+
+.stats-chart__title {
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-semibold);
+  color: var(--text-primary);
+  margin-bottom: var(--spacing-md);
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+}
+
+.stats-chart__title-icon {
+  font-size: 18px;
+}
+
+.stats-chart__canvas-wrapper {
+  position: relative;
+  width: 100%;
+  height: 400px;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+
+/* 图表空状态 */
+.stats-chart__empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 400px;
+  color: var(--text-tertiary);
+  text-align: center;
+}
+
+.stats-chart__empty-icon {
+  font-size: 48px;
+  margin-bottom: var(--spacing-md);
+  opacity: 0.5;
+}
+
+.stats-chart__empty-text {
+  font-size: var(--font-size-sm);
+  color: var(--text-tertiary);
+  line-height: 1.5;
+}
+
+/* ------------------------------------------
+ * 洞察分析区域 — 图标+文字列表、建议卡片
+ * ------------------------------------------ */
+.stats-insight {
+  padding: var(--spacing-md) 0;
+}
+
+.stats-insight__title {
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-semibold);
+  color: var(--text-primary);
+  margin-bottom: var(--spacing-md);
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+}
+
+.stats-insight__title-icon {
+  font-size: 18px;
+}
+
+.stats-insight__summary {
+  font-size: var(--font-size-base);
+  color: var(--text-primary);
+  line-height: 1.7;
+  margin-bottom: var(--spacing-lg);
+  padding: var(--spacing-md);
+  background: linear-gradient(135deg, var(--accent-light), var(--card-bg));
+  border-radius: var(--radius-md);
+  border-left: 3px solid var(--accent);
+  font-weight: var(--font-weight-medium);
+}
+
+/* 建议项列表 */
+.stats-insight__suggestion {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spacing-md);
+  font-size: var(--font-size-sm);
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin-bottom: var(--spacing-md);
+  padding: var(--spacing-md);
+  background-color: var(--bg-tertiary);
+  border-radius: var(--radius-md);
+  transition: background-color var(--transition-fast);
+}
+
+.stats-insight__suggestion:hover {
+  background-color: var(--border-color);
+}
+
+.stats-insight__suggestion-icon {
+  flex-shrink: 0;
+  font-size: 16px;
+  margin-top: 1px;
+}
+
+/* ------------------------------------------
+ * 文字统计摘要（Chart.js降级方案）
+ * ------------------------------------------ */
+.stats-text-summary {
+  padding: var(--spacing-md);
+}
+
+.stats-text-summary__item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--spacing-sm) 0;
+  border-bottom: 1px solid var(--divider-color);
+}
+
+.stats-text-summary__item:last-child {
+  border-bottom: none;
+}
+
+.stats-text-summary__label {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  font-size: var(--font-size-sm);
+  color: var(--text-secondary);
+}
+
+.stats-text-summary__dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.stats-text-summary__value {
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+  color: var(--text-primary);
+}
+
+/* ------------------------------------------
+ * 无数据占位
+ * ------------------------------------------ */
+.stats-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-4xl) 0;
+  color: var(--text-tertiary);
+  font-size: var(--font-size-base);
+}
+
+.stats-empty__icon {
+  font-size: 56px;
+  margin-bottom: var(--spacing-lg);
+  opacity: 0.4;
+}
+
+.stats-empty__text {
+  font-size: var(--font-size-sm);
+  color: var(--text-tertiary);
+  margin-bottom: var(--spacing-lg);
+  text-align: center;
+  line-height: 1.5;
+}
+
+.stats-empty__action {
+  margin-top: var(--spacing-sm);
+}
+
+/* ------------------------------------------
+ * 洞察主导心情展示
+ * ------------------------------------------ */
+.stats-insight__dominant {
+  padding: var(--spacing-lg) 0;
+}
+
+/* ------------------------------------------
+ * 主题切换过渡动画
+ * ------------------------------------------ */
+.theme-transitioning .stats-period__btn,
+.theme-transitioning .stats-chart__title,
+.theme-transitioning .stats-insight__title {
+  transition: all 0.5s ease;
+}

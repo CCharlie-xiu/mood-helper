@@ -1,0 +1,597 @@
+/* ============================================
+ * 基础布局 — 大学生心情记录助手
+ * PC端布局：左侧固定侧边栏 + 右侧全宽自适应内容区域
+ * ============================================ */
+
+/* ------------------------------------------
+ * 应用主布局 — 左侧侧边栏 + 右侧内容区
+ * ------------------------------------------ */
+.app-layout {
+  display: flex;
+  min-height: 100vh;
+  background-color: var(--bg-primary);
+  transition: background-color var(--transition-slow);
+}
+
+/* ------------------------------------------
+ * 右侧主内容区域 — 自适应宽度
+ * ------------------------------------------ */
+.main-content {
+  margin-left: var(--sidebar-width);
+  flex: 1;
+  min-height: 100vh;
+  background-color: var(--bg-primary);
+  transition: background-color var(--transition-slow);
+}
+
+/* ------------------------------------------
+ * 页面视图容器 — 正常文档流
+ * ------------------------------------------ */
+.page-view {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+}
+
+/* ------------------------------------------
+ * 页面内容区域 — PC端充足padding
+ * ------------------------------------------ */
+.page-content {
+  padding: var(--page-padding);
+  padding-top: var(--page-padding);
+  padding-bottom: var(--spacing-4xl);
+  max-width: 1200px;
+  /* 页面内容渐入动画 */
+  animation: page-content-enter 400ms ease-out;
+}
+
+@keyframes page-content-enter {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ------------------------------------------
+ * 页面标题 — PC端更大字号
+ * ------------------------------------------ */
+.page-header {
+  position: sticky;
+  top: 0;
+  z-index: var(--z-sticky);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: var(--header-height);
+  padding: 0 var(--page-padding);
+  background-color: var(--bg-primary);
+  border-bottom: 1px solid var(--divider-color);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  transition: background-color var(--transition-normal);
+}
+
+.page-header__title {
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--text-primary);
+}
+
+.page-header__action {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+}
+
+/* ------------------------------------------
+ * 卡片通用样式 — PC端自适应宽度
+ * ------------------------------------------ */
+.card {
+  background-color: var(--card-bg);
+  border-radius: var(--card-radius);
+  box-shadow: var(--card-shadow);
+  padding: var(--spacing-lg);
+  margin-bottom: var(--spacing-md);
+  transition: background-color var(--transition-normal),
+              box-shadow var(--transition-normal),
+              transform var(--transition-fast);
+  /* 卡片出现动画 */
+  animation: card-enter 350ms ease-out backwards;
+}
+
+/* 卡片错开出现（stagger效果），通过JS设置 --card-index 变量 */
+.card:nth-child(1) { animation-delay: 0ms; }
+.card:nth-child(2) { animation-delay: 60ms; }
+.card:nth-child(3) { animation-delay: 120ms; }
+.card:nth-child(4) { animation-delay: 180ms; }
+.card:nth-child(5) { animation-delay: 240ms; }
+.card:nth-child(6) { animation-delay: 300ms; }
+
+@keyframes card-enter {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.card--interactive {
+  cursor: pointer;
+  transition: transform var(--transition-fast),
+              box-shadow var(--transition-fast);
+}
+
+.card--interactive:hover {
+  box-shadow: var(--shadow-lg);
+}
+
+.card--interactive:active {
+  transform: scale(0.98);
+  box-shadow: var(--shadow-sm);
+}
+
+/* ------------------------------------------
+ * 提示消息容器 — PC端居中显示
+ * ------------------------------------------ */
+.toast-container {
+  position: fixed;
+  top: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: var(--z-toast);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: var(--spacing-md);
+  pointer-events: none;
+  width: 100%;
+  max-width: 480px;
+}
+
+/* ------------------------------------------
+ * 不兼容浏览器提示
+ * ------------------------------------------ */
+.unsupported-browser {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--bg-primary);
+}
+
+.unsupported-content {
+  text-align: center;
+  padding: var(--spacing-2xl);
+}
+
+.unsupported-icon {
+  font-size: 64px;
+  margin-bottom: var(--spacing-lg);
+}
+
+.unsupported-content h2 {
+  font-size: var(--font-size-2xl);
+  margin-bottom: var(--spacing-md);
+  color: var(--text-primary);
+}
+
+.unsupported-content p {
+  font-size: var(--font-size-base);
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+/* ------------------------------------------
+ * 通用工具类 — Flex布局
+ * ------------------------------------------ */
+.flex {
+  display: flex;
+}
+
+.flex-col {
+  display: flex;
+  flex-direction: column;
+}
+
+.flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.flex-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.flex-start {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.flex-end {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.flex-wrap {
+  flex-wrap: wrap;
+}
+
+.flex-1 {
+  flex: 1;
+}
+
+/* ------------------------------------------
+ * 通用工具类 — 文字
+ * ------------------------------------------ */
+.text-center {
+  text-align: center;
+}
+
+.text-left {
+  text-align: left;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.text-primary {
+  color: var(--text-primary);
+}
+
+.text-secondary {
+  color: var(--text-secondary);
+}
+
+.text-tertiary {
+  color: var(--text-tertiary);
+}
+
+.text-accent {
+  color: var(--accent);
+}
+
+.text-bold {
+  font-weight: var(--font-weight-bold);
+}
+
+.text-semibold {
+  font-weight: var(--font-weight-semibold);
+}
+
+.text-medium {
+  font-weight: var(--font-weight-medium);
+}
+
+.text-truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* 渐变文字效果 */
+.text-gradient {
+  background: linear-gradient(135deg, var(--accent), var(--mood-happy));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* ------------------------------------------
+ * 通用工具类 — 间距
+ * ------------------------------------------ */
+.mt-xs { margin-top: var(--spacing-xs); }
+.mt-sm { margin-top: var(--spacing-sm); }
+.mt-md { margin-top: var(--spacing-md); }
+.mt-lg { margin-top: var(--spacing-lg); }
+.mt-xl { margin-top: var(--spacing-xl); }
+.mt-2xl { margin-top: var(--spacing-2xl); }
+
+.mb-xs { margin-bottom: var(--spacing-xs); }
+.mb-sm { margin-bottom: var(--spacing-sm); }
+.mb-md { margin-bottom: var(--spacing-md); }
+.mb-lg { margin-bottom: var(--spacing-lg); }
+.mb-xl { margin-bottom: var(--spacing-xl); }
+.mb-2xl { margin-bottom: var(--spacing-2xl); }
+
+.ml-xs { margin-left: var(--spacing-xs); }
+.ml-sm { margin-left: var(--spacing-sm); }
+.ml-md { margin-left: var(--spacing-md); }
+
+.mr-xs { margin-right: var(--spacing-xs); }
+.mr-sm { margin-right: var(--spacing-sm); }
+.mr-md { margin-right: var(--spacing-md); }
+
+.p-sm { padding: var(--spacing-sm); }
+.p-md { padding: var(--spacing-md); }
+.p-lg { padding: var(--spacing-lg); }
+.p-xl { padding: var(--spacing-xl); }
+
+.px-md { padding-left: var(--spacing-md); padding-right: var(--spacing-md); }
+.py-md { padding-top: var(--spacing-md); padding-bottom: var(--spacing-md); }
+
+.gap-xs { gap: var(--spacing-xs); }
+.gap-sm { gap: var(--spacing-sm); }
+.gap-md { gap: var(--spacing-md); }
+.gap-lg { gap: var(--spacing-lg); }
+
+/* ------------------------------------------
+ * 通用工具类 — 尺寸
+ * ------------------------------------------ */
+.w-full {
+  width: 100%;
+}
+
+.h-full {
+  height: 100%;
+}
+
+/* ------------------------------------------
+ * 通用工具类 — 显示/隐藏
+ * ------------------------------------------ */
+.hidden {
+  display: none !important;
+}
+
+.invisible {
+  visibility: hidden;
+}
+
+/* ------------------------------------------
+ * 通用工具类 — 圆角
+ * ------------------------------------------ */
+.rounded-sm { border-radius: var(--radius-sm); }
+.rounded-md { border-radius: var(--radius-md); }
+.rounded-lg { border-radius: var(--radius-lg); }
+.rounded-full { border-radius: var(--radius-full); }
+
+/* ------------------------------------------
+ * 通用工具类 — 阴影
+ * ------------------------------------------ */
+.shadow-sm { box-shadow: var(--shadow-sm); }
+.shadow-md { box-shadow: var(--shadow-md); }
+.shadow-lg { box-shadow: var(--shadow-lg); }
+
+/* ------------------------------------------
+ * 通用按钮样式 — PC端天蓝色阴影
+ * ------------------------------------------ */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 44px;
+  padding: 0 var(--spacing-xl);
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-semibold);
+  border-radius: var(--radius-lg);
+  transition: transform var(--transition-fast),
+              background-color var(--transition-fast),
+              opacity var(--transition-fast),
+              box-shadow var(--transition-fast);
+  cursor: pointer;
+  -webkit-user-select: none;
+  user-select: none;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn:active {
+  transform: scale(0.96);
+}
+
+.btn--primary {
+  background: linear-gradient(135deg, var(--accent), var(--accent-dark));
+  color: #FFFFFF;
+  box-shadow: 0 4px 12px rgba(74, 158, 222, 0.3);
+}
+
+.btn--primary:active {
+  background: var(--accent-dark);
+  box-shadow: 0 2px 6px rgba(74, 158, 222, 0.2);
+}
+
+.btn--secondary {
+  background-color: var(--bg-tertiary);
+  color: var(--text-primary);
+}
+
+.btn--secondary:active {
+  background-color: var(--border-color);
+}
+
+.btn--outline {
+  background-color: transparent;
+  border: 1.5px solid var(--border-color);
+  color: var(--text-primary);
+}
+
+.btn--outline:active {
+  background-color: var(--bg-tertiary);
+}
+
+.btn--block {
+  width: 100%;
+}
+
+.btn--sm {
+  height: 32px;
+  padding: 0 var(--spacing-md);
+  font-size: var(--font-size-sm);
+  border-radius: var(--radius-md);
+}
+
+.btn--lg {
+  height: 52px;
+  padding: 0 var(--spacing-2xl);
+  font-size: var(--font-size-lg);
+  border-radius: var(--radius-xl);
+}
+
+.btn--disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* 按钮波纹效果 */
+.btn-ripple {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.35);
+  transform: scale(0);
+  animation: ripple-effect 600ms ease-out;
+  pointer-events: none;
+}
+
+@keyframes ripple-effect {
+  to {
+    transform: scale(4);
+    opacity: 0;
+  }
+}
+
+/* ------------------------------------------
+ * 标签样式
+ * ------------------------------------------ */
+.tag {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 28px;
+  padding: 0 var(--spacing-md);
+  font-size: var(--font-size-sm);
+  border-radius: var(--radius-full);
+  background-color: var(--bg-tertiary);
+  color: var(--text-secondary);
+  transition: background-color var(--transition-fast),
+              color var(--transition-fast),
+              transform var(--transition-fast);
+}
+
+.tag:active {
+  transform: scale(0.95);
+}
+
+.tag--active {
+  background-color: var(--accent-light);
+  color: var(--accent-dark);
+}
+
+/* ------------------------------------------
+ * 分割线
+ * ------------------------------------------ */
+.divider {
+  width: 100%;
+  height: 1px;
+  background-color: var(--divider-color);
+  margin: var(--spacing-md) 0;
+}
+
+/* ------------------------------------------
+ * 滚动容器
+ * ------------------------------------------ */
+.scroll-container {
+  overflow-y: auto;
+}
+
+/* ------------------------------------------
+ * 页面过渡动画相关样式
+ * ------------------------------------------ */
+
+/* 页面切换时的淡入淡出 */
+.page-transition-enter {
+  animation: page-content-enter 300ms ease-out;
+}
+
+.page-transition-exit {
+  animation: page-content-exit 200ms ease-in forwards;
+}
+
+@keyframes page-content-exit {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+}
+
+/* ------------------------------------------
+ * 暗色模式过渡
+ * ------------------------------------------ */
+html[data-theme] {
+  transition: background-color var(--transition-slow),
+              color var(--transition-slow);
+}
+
+html[data-theme] * {
+  transition: background-color var(--transition-slow),
+              color var(--transition-slow),
+              border-color var(--transition-slow),
+              box-shadow var(--transition-slow);
+}
+
+/* 覆盖：动画元素不应被全局transition影响 */
+.anim-bounce,
+.anim-float,
+.anim-shake,
+.anim-sink,
+.anim-pulse,
+.anim-confetti,
+.anim-confetti-left,
+.anim-confetti-right,
+.anim-success-pop,
+.anim-toast-in,
+.anim-toast-out,
+.anim-fade-in,
+.anim-fade-out,
+.anim-slide-left,
+.anim-slide-right,
+.anim-slide-up,
+.anim-slide-down-out,
+.anim-appear,
+.anim-disappear,
+.anim-pop-in-up,
+.anim-btn-press,
+.anim-count-bump,
+.anim-calendar-left,
+.anim-calendar-right,
+.card,
+.btn,
+.btn-ripple {
+  /* 动画元素保持自己的transition */
+  transition: none;
+}
+
+/* 重新为card和btn设置合适的transition */
+.card {
+  transition: background-color var(--transition-normal),
+              box-shadow var(--transition-normal),
+              transform var(--transition-fast);
+}
+
+.btn {
+  transition: transform var(--transition-fast),
+              background-color var(--transition-fast),
+              opacity var(--transition-fast),
+              box-shadow var(--transition-fast);
+}

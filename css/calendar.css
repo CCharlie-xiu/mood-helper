@@ -1,0 +1,356 @@
+/* ============================================
+ * 日历回顾页样式 — 大学生心情记录助手
+ * 月份导航、日历网格、心情颜色圆点、月份切换动画
+ * PC端布局：更大日历格子、右侧详情面板
+ * ============================================ */
+
+/* ------------------------------------------
+ * 日历页面整体布局 — 左侧日历+右侧详情
+ * ------------------------------------------ */
+.calendar-layout {
+  display: flex;
+  gap: var(--spacing-xl);
+  padding: var(--page-padding);
+}
+
+.calendar-main {
+  flex: 1;
+  min-width: 0;
+}
+
+.calendar-detail-panel {
+  width: 320px;
+  flex-shrink: 0;
+}
+
+/* ------------------------------------------
+ * 月份导航 — 居中标题、左右箭头按钮、今天按钮
+ * ------------------------------------------ */
+.calendar-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--spacing-md) 0;
+  gap: var(--spacing-sm);
+}
+
+.calendar-nav__arrow {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-full);
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: background-color var(--transition-fast),
+              color var(--transition-fast),
+              transform var(--transition-fast);
+  font-size: var(--font-size-md);
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+.calendar-nav__arrow:hover {
+  background-color: var(--bg-tertiary);
+  color: var(--text-primary);
+}
+
+.calendar-nav__arrow:active {
+  background-color: var(--border-color);
+  color: var(--text-primary);
+  transform: scale(0.92);
+}
+
+.calendar-nav__title {
+  font-size: 20px;
+  font-weight: var(--font-weight-bold);
+  color: var(--text-primary);
+  min-width: 120px;
+  text-align: center;
+}
+
+.calendar-nav__today {
+  font-size: var(--font-size-sm);
+  color: var(--accent);
+  cursor: pointer;
+  padding: var(--spacing-xs) var(--spacing-md);
+  border-radius: var(--radius-full);
+  background-color: var(--accent-light);
+  font-weight: var(--font-weight-medium);
+  transition: background-color var(--transition-fast),
+              color var(--transition-fast),
+              transform var(--transition-fast);
+  -webkit-user-select: none;
+  user-select: none;
+  white-space: nowrap;
+}
+
+.calendar-nav__today:hover {
+  background-color: var(--accent);
+  color: #FFFFFF;
+}
+
+.calendar-nav__today:active {
+  transform: scale(0.95);
+}
+
+/* "今天"按钮高亮效果（当不在当前月份时） */
+.calendar-nav__today--highlight {
+  background: linear-gradient(135deg, var(--accent), var(--accent-dark));
+  color: #FFFFFF;
+  box-shadow: 0 2px 8px rgba(74, 158, 222, 0.3);
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 2px 8px rgba(74, 158, 222, 0.3); }
+  50% { box-shadow: 0 2px 16px rgba(74, 158, 222, 0.5); }
+}
+
+/* ------------------------------------------
+ * 星期标题行 — 灰色小字
+ * ------------------------------------------ */
+.calendar-weekdays {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  margin-bottom: var(--spacing-xs);
+}
+
+.calendar-weekday {
+  text-align: center;
+  font-size: var(--font-size-sm);
+  color: var(--text-tertiary);
+  padding: var(--spacing-sm) 0;
+  font-weight: var(--font-weight-medium);
+}
+
+/* 周末标题颜色 */
+.calendar-weekday:first-child,
+.calendar-weekday:last-child {
+  color: var(--mood-angry);
+  opacity: 0.6;
+}
+
+/* ------------------------------------------
+ * 日历网格 — 7列等宽、PC端更大格子
+ * ------------------------------------------ */
+.calendar-grid-wrapper {
+  position: relative;
+  overflow: hidden;
+}
+
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 4px;
+  /* 月份切换动画 */
+  transition: transform 300ms cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              opacity 300ms ease;
+}
+
+/* 月份切换动画类 */
+.calendar-grid.anim-calendar-left {
+  animation: calendar-slide-left 300ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.calendar-grid.anim-calendar-right {
+  animation: calendar-slide-right 300ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.calendar-day {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  aspect-ratio: 1;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: background-color var(--transition-fast),
+              transform var(--transition-fast);
+  min-height: 56px;
+}
+
+.calendar-day:hover {
+  background-color: var(--bg-tertiary);
+}
+
+.calendar-day:active {
+  background-color: var(--bg-tertiary);
+  transform: scale(0.93);
+}
+
+/* ------------------------------------------
+ * 今日高亮 — 天蓝色圆形背景
+ * ------------------------------------------ */
+.calendar-day--today {
+  background-color: var(--calendar-today-bg);
+  color: var(--calendar-today-text);
+  font-weight: var(--font-weight-bold);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 2px 8px rgba(74, 158, 222, 0.3);
+}
+
+.calendar-day--today:hover {
+  background-color: var(--accent-dark);
+}
+
+.calendar-day--today:active {
+  opacity: 0.9;
+  transform: scale(0.95);
+}
+
+/* 今日心情圆点颜色覆盖 */
+.calendar-day--today .calendar-day__mood-dot {
+  background-color: rgba(255, 255, 255, 0.8) !important;
+}
+
+/* ------------------------------------------
+ * 选中日期
+ * ------------------------------------------ */
+.calendar-day--selected {
+  background-color: var(--calendar-selected-bg);
+  border: 2px solid var(--accent);
+}
+
+/* ------------------------------------------
+ * 未来日期 — 灰色文字
+ * ------------------------------------------ */
+.calendar-day--future {
+  color: var(--calendar-future-text);
+  cursor: default;
+}
+
+.calendar-day--future:hover {
+  background-color: transparent;
+}
+
+.calendar-day--future:active {
+  background-color: transparent;
+  transform: none;
+}
+
+/* ------------------------------------------
+ * 空白日期
+ * ------------------------------------------ */
+.calendar-day--empty {
+  cursor: default;
+}
+
+.calendar-day--empty:hover {
+  background-color: transparent;
+}
+
+/* ------------------------------------------
+ * 日期数字 — PC端稍大
+ * ------------------------------------------ */
+.calendar-day__number {
+  font-size: 15px;
+  line-height: 1;
+  font-weight: var(--font-weight-medium);
+}
+
+/* ------------------------------------------
+ * 心情颜色圆点 — 小圆点在日期下方
+ * ------------------------------------------ */
+.calendar-day__mood-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  margin-top: 4px;
+  transition: transform var(--transition-fast);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
+}
+
+/* 有心情圆点的日期hover时圆点放大 */
+.calendar-day:hover .calendar-day__mood-dot {
+  transform: scale(1.3);
+}
+
+/* 心情圆点脉冲动画 */
+.calendar-day__mood-dot--pulse {
+  animation: mood-dot-pulse 2s ease-in-out infinite;
+}
+
+@keyframes mood-dot-pulse {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.4); opacity: 0.7; }
+}
+
+/* ------------------------------------------
+ * 空月份提示
+ * ------------------------------------------ */
+.calendar-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-4xl) 0;
+  color: var(--text-tertiary);
+  font-size: var(--font-size-base);
+}
+
+.calendar-empty__icon {
+  font-size: 48px;
+  margin-bottom: var(--spacing-md);
+  opacity: 0.5;
+}
+
+.calendar-empty__text {
+  font-size: var(--font-size-sm);
+  color: var(--text-tertiary);
+}
+
+/* ------------------------------------------
+ * 手势滑动提示
+ * ------------------------------------------ */
+.calendar-swipe-hint {
+  text-align: center;
+  padding: var(--spacing-sm) 0;
+  font-size: var(--font-size-xs);
+  color: var(--text-tertiary);
+  opacity: 0.6;
+}
+
+/* ------------------------------------------
+ * 右侧日期详情面板
+ * ------------------------------------------ */
+.calendar-detail-card {
+  position: sticky;
+  top: calc(var(--header-height) + var(--spacing-md));
+}
+
+.calendar-detail-card .card {
+  min-height: 300px;
+}
+
+/* ------------------------------------------
+ * 暗色模式调整
+ * ------------------------------------------ */
+[data-theme="dark"] .calendar-day--today {
+  box-shadow: 0 2px 8px rgba(94, 179, 232, 0.25);
+}
+
+[data-theme="dark"] .calendar-day__mood-dot {
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+/* ------------------------------------------
+ * 日历心情圆点呼吸动画错开时间
+ * ------------------------------------------ */
+.calendar-day:nth-child(7n+2) .anim-mood-dot-pulse { animation-delay: 0.3s; }
+.calendar-day:nth-child(7n+3) .anim-mood-dot-pulse { animation-delay: 0.6s; }
+.calendar-day:nth-child(7n+4) .anim-mood-dot-pulse { animation-delay: 0.9s; }
+.calendar-day:nth-child(7n+5) .anim-mood-dot-pulse { animation-delay: 1.2s; }
+.calendar-day:nth-child(7n+6) .anim-mood-dot-pulse { animation-delay: 1.5s; }
+.calendar-day:nth-child(7n+7) .anim-mood-dot-pulse { animation-delay: 1.8s; }
+
+/* ------------------------------------------
+ * 主题切换过渡动画
+ * ------------------------------------------ */
+.theme-transitioning .calendar-day,
+.theme-transitioning .calendar-nav__title,
+.theme-transitioning .calendar-weekday {
+  transition: all 0.5s ease;
+}

@@ -1,0 +1,6 @@
+<svg viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <circle cx="60" cy="60" r="50" fill="var(--bg-tertiary)" opacity="0.5"/>
+  <circle cx="52" cy="52" r="22" fill="var(--card-bg)" stroke="var(--border-color)" stroke-width="3"/>
+  <line x1="68" y1="68" x2="88" y2="88" stroke="var(--border-color)" stroke-width="4" stroke-linecap="round"/>
+  <line x1="42" y1="52" x2="62" y2="52" stroke="var(--border-color)" stroke-width="2" stroke-linecap="round" opacity="0.5"/>
+</svg>

@@ -1,0 +1,292 @@
+/* ============================================
+ * CSS 变量体系 — 大学生心情记录助手
+ * 包含：亮色主题、暗色主题、心情颜色映射、设计令牌
+ * ============================================ */
+
+/* ------------------------------------------
+ * 亮色主题 (Light Theme) — 天空蔚蓝风格
+ * ------------------------------------------ */
+:root,
+:root[data-theme="light"] {
+  /* 背景色 - 浅蓝白调 */
+  --bg-primary: #F0F5FA;
+  --bg-secondary: #FFFFFF;
+  --bg-tertiary: #E4ECF4;
+
+  /* 文字色 */
+  --text-primary: #1C2D42;
+  --text-secondary: #5A7089;
+  --text-tertiary: #94A7BB;
+
+  /* 强调色 - 天蓝色 */
+  --accent: #4A9EDE;
+  --accent-light: #E1F0FB;
+  --accent-dark: #3480B8;
+
+  /* 卡片 */
+  --card-bg: #FFFFFF;
+  --card-shadow: 0 2px 12px rgba(30, 60, 100, 0.07);
+  --card-radius: 16px;
+
+  /* 边框 */
+  --border-color: #D6E2EE;
+  --divider-color: #EAF0F7;
+
+  /* 导航栏 */
+  --tabbar-bg: rgba(255, 255, 255, 0.88);
+  --tabbar-active: #4A9EDE;
+  --tabbar-inactive: #94A7BB;
+
+  /* 侧边栏 */
+  --sidebar-width: 220px;
+  --sidebar-bg: #FFFFFF;
+  --sidebar-text: #5A7089;
+  --sidebar-text-active: #4A9EDE;
+  --sidebar-item-hover: #E1F0FB;
+  --sidebar-item-active: #E1F0FB;
+  --sidebar-border: #D6E2EE;
+
+  /* 心情颜色 - 保持温暖但微调适配蓝色主调 */
+  --mood-happy: #FFD93D;
+  --mood-calm: #5EC4A8;
+  --mood-anxious: #F4A261;
+  --mood-sad: #6BA3D6;
+  --mood-angry: #E76F6F;
+
+  /* 心情颜色 - 浅色变体 */
+  --mood-happy-light: #FFF5D4;
+  --mood-calm-light: #D4F0E6;
+  --mood-anxious-light: #FDE8D0;
+  --mood-sad-light: #D4E8F7;
+  --mood-angry-light: #FAD4D4;
+
+  /* 心情颜色 - 深色变体 */
+  --mood-happy-dark: #E6C235;
+  --mood-calm-dark: #4AAF92;
+  --mood-anxious-dark: #DB8F57;
+  --mood-sad-dark: #5A90C2;
+  --mood-angry-dark: #D66060;
+
+  /* 输入框 */
+  --input-bg: #F5F8FC;
+  --input-border: #C8D8E8;
+  --input-focus-border: #4A9EDE;
+
+  /* 滑块 */
+  --slider-track: #D6E2EE;
+  --slider-fill: #4A9EDE;
+
+  /* 遮罩 */
+  --overlay-bg: rgba(20, 40, 70, 0.45);
+
+  /* Toast */
+  --toast-success-bg: #E1F5ED;
+  --toast-success-text: #2A7D56;
+  --toast-error-bg: #FDE8E8;
+  --toast-error-text: #C62828;
+  --toast-info-bg: #E1F0FB;
+  --toast-info-text: #1A6AAF;
+  --toast-warning-bg: #FFF8E1;
+  --toast-warning-text: #C68A00;
+
+  /* 日历 */
+  --calendar-today-bg: #4A9EDE;
+  --calendar-today-text: #FFFFFF;
+  --calendar-selected-bg: #E1F0FB;
+  --calendar-future-text: #C0D0E0;
+}
+
+/* ------------------------------------------
+ * 暗色主题 (Dark Theme) — 深蓝灰调（不是深紫！）
+ * ------------------------------------------ */
+:root[data-theme="dark"] {
+  /* 背景色 - 深蓝灰调（不是深紫！） */
+  --bg-primary: #121D2B;
+  --bg-secondary: #1A2838;
+  --bg-tertiary: #223344;
+
+  /* 文字色 */
+  --text-primary: #E8EEF4;
+  --text-secondary: #94AAC0;
+  --text-tertiary: #5E7A94;
+
+  /* 强调色 - 天蓝色（暗色下稍亮） */
+  --accent: #5EB3E8;
+  --accent-light: #1A3048;
+  --accent-dark: #4A9EDE;
+
+  /* 卡片 */
+  --card-bg: #1A2838;
+  --card-shadow: 0 2px 12px rgba(0, 0, 0, 0.25);
+  --card-radius: 16px;
+
+  /* 边框 */
+  --border-color: #2A3E52;
+  --divider-color: #1E3040;
+
+  /* 导航栏 */
+  --tabbar-bg: rgba(18, 29, 43, 0.88);
+  --tabbar-active: #5EB3E8;
+  --tabbar-inactive: #5E7A94;
+
+  /* 侧边栏 */
+  --sidebar-width: 220px;
+  --sidebar-bg: #1A2838;
+  --sidebar-text: #94AAC0;
+  --sidebar-text-active: #5EB3E8;
+  --sidebar-item-hover: #1A3048;
+  --sidebar-item-active: #1A3048;
+  --sidebar-border: #2A3E52;
+
+  /* 心情颜色（暗色模式下稍微调亮） */
+  --mood-happy: #FFE066;
+  --mood-calm: #6EDBB8;
+  --mood-anxious: #F5B07A;
+  --mood-sad: #7ABAE8;
+  --mood-angry: #F08080;
+
+  /* 心情颜色 - 浅色变体（暗色模式下使用深色变体） */
+  --mood-happy-light: #2E2818;
+  --mood-calm-light: #18302A;
+  --mood-anxious-light: #2E2218;
+  --mood-sad-light: #182838;
+  --mood-angry-light: #2E1818;
+
+  /* 心情颜色 - 深色变体 */
+  --mood-happy-dark: #FFE066;
+  --mood-calm-dark: #6EDBB8;
+  --mood-anxious-dark: #F5B07A;
+  --mood-sad-dark: #7ABAE8;
+  --mood-angry-dark: #F08080;
+
+  /* 输入框 */
+  --input-bg: #223344;
+  --input-border: #2E4458;
+  --input-focus-border: #5EB3E8;
+
+  /* 滑块 */
+  --slider-track: #2E4458;
+  --slider-fill: #5EB3E8;
+
+  /* 遮罩 */
+  --overlay-bg: rgba(5, 10, 20, 0.65);
+
+  /* Toast */
+  --toast-success-bg: #18302A;
+  --toast-success-text: #6EDBB8;
+  --toast-error-bg: #2E1818;
+  --toast-error-text: #F08080;
+  --toast-info-bg: #182838;
+  --toast-info-text: #7ABAE8;
+  --toast-warning-bg: #2E2818;
+  --toast-warning-text: #FFE066;
+
+  /* 日历 */
+  --calendar-today-bg: #5EB3E8;
+  --calendar-today-text: #121D2B;
+  --calendar-selected-bg: #1A3048;
+  --calendar-future-text: #2E4458;
+}
+
+/* ------------------------------------------
+ * 设计令牌 — 间距
+ * ------------------------------------------ */
+:root {
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 12px;
+  --spacing-lg: 16px;
+  --spacing-xl: 20px;
+  --spacing-2xl: 24px;
+  --spacing-3xl: 32px;
+  --spacing-4xl: 48px;
+}
+
+/* ------------------------------------------
+ * 设计令牌 — 字号
+ * ------------------------------------------ */
+:root {
+  --font-size-xs: 10px;
+  --font-size-sm: 12px;
+  --font-size-base: 14px;
+  --font-size-md: 16px;
+  --font-size-lg: 18px;
+  --font-size-xl: 20px;
+  --font-size-2xl: 24px;
+  --font-size-3xl: 28px;
+  --font-size-4xl: 36px;
+}
+
+/* ------------------------------------------
+ * 设计令牌 — 字重
+ * ------------------------------------------ */
+:root {
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+}
+
+/* ------------------------------------------
+ * 设计令牌 — 圆角
+ * ------------------------------------------ */
+:root {
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+  --radius-xl: 20px;
+  --radius-full: 9999px;
+}
+
+/* ------------------------------------------
+ * 设计令牌 — 阴影
+ * ------------------------------------------ */
+:root {
+  --shadow-sm: 0 1px 4px rgba(0, 0, 0, 0.06);
+  --shadow-md: 0 2px 12px rgba(0, 0, 0, 0.08);
+  --shadow-lg: 0 4px 24px rgba(0, 0, 0, 0.12);
+  --shadow-xl: 0 8px 32px rgba(0, 0, 0, 0.16);
+}
+
+/* ------------------------------------------
+ * 设计令牌 — 过渡
+ * ------------------------------------------ */
+:root {
+  --transition-fast: 150ms ease-out;
+  --transition-normal: 250ms ease-in-out;
+  --transition-slow: 350ms ease-in-out;
+  --transition-spring: 300ms cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* ------------------------------------------
+ * 设计令牌 — Z-index 层级
+ * ------------------------------------------ */
+:root {
+  --z-base: 1;
+  --z-dropdown: 10;
+  --z-sticky: 20;
+  --z-tabbar: 100;
+  --z-overlay: 200;
+  --z-modal: 300;
+  --z-toast: 400;
+  --z-tooltip: 500;
+}
+
+/* ------------------------------------------
+ * 设计令牌 — 安全区域（PC端不需要，设为0）
+ * ------------------------------------------ */
+:root {
+  --safe-area-top: 0px;
+  --safe-area-bottom: 0px;
+  --safe-area-left: 0px;
+  --safe-area-right: 0px;
+}
+
+/* ------------------------------------------
+ * 设计令牌 — 导航栏
+ * ------------------------------------------ */
+:root {
+  --tabbar-height: 56px;
+  --page-padding: 32px;
+  --header-height: 56px;
+}

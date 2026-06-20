@@ -1,0 +1,13 @@
+<svg viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <circle cx="60" cy="60" r="50" fill="var(--bg-tertiary)" opacity="0.5"/>
+  <rect x="25" y="28" width="70" height="65" rx="8" fill="var(--card-bg)" stroke="var(--border-color)" stroke-width="2"/>
+  <rect x="25" y="28" width="70" height="20" rx="8" fill="var(--accent)" opacity="0.3"/>
+  <line x1="25" y1="48" x2="95" y2="48" stroke="var(--border-color)" stroke-width="2"/>
+  <line x1="45" y1="22" x2="45" y2="34" stroke="var(--border-color)" stroke-width="2.5" stroke-linecap="round"/>
+  <line x1="75" y1="22" x2="75" y2="34" stroke="var(--border-color)" stroke-width="2.5" stroke-linecap="round"/>
+  <circle cx="45" cy="62" r="4" fill="var(--accent)" opacity="0.6"/>
+  <circle cx="60" cy="62" r="4" fill="var(--accent)" opacity="0.6"/>
+  <circle cx="75" cy="62" r="4" fill="var(--accent)" opacity="0.6"/>
+  <circle cx="45" cy="78" r="4" fill="var(--accent)" opacity="0.6"/>
+  <circle cx="60" cy="78" r="4" fill="var(--accent)" opacity="0.6"/>
+</svg>
