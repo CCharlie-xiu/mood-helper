@@ -309,14 +309,30 @@ class RecordView extends BaseView {
     document.body.appendChild(confettiContainer);
     AnimationController.playConfetti(confettiContainer, 10);
 
+    // 清理函数：移除覆盖层和彩纸容器
+    let cleaned = false;
+    const cleanup = () => {
+      if (cleaned) return;
+      cleaned = true;
+      if (overlay.parentNode) overlay.remove();
+      if (confettiContainer.parentNode) confettiContainer.remove();
+      if (callback) callback();
+    };
+
     // 动画结束后清理并回调
     setTimeout(() => {
       overlay.classList.add('anim-fade-out');
-      overlay.addEventListener('animationend', () => overlay.remove());
-      if (confettiContainer.parentNode) {
-        confettiContainer.parentNode.removeChild(confettiContainer);
-      }
-      if (callback) callback();
+      // 监听 overlay 自身的 fade-out 动画结束
+      const handleAnimEnd = (e) => {
+        // 只响应 overlay 自身的动画结束事件，忽略子元素冒泡
+        if (e.target === overlay) {
+          overlay.removeEventListener('animationend', handleAnimEnd);
+          cleanup();
+        }
+      };
+      overlay.addEventListener('animationend', handleAnimEnd);
+      // 超时保护：500ms 后强制清理（fade-out 动画 200ms + 缓冲）
+      setTimeout(cleanup, 500);
     }, 800);
   }
 
